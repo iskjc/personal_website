@@ -1,46 +1,47 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>我的超链接页面</title>
+    <title>easter egg</title>
     <style>
         body {
-            font-family: "微软雅黑", sans-serif;
-            background-color: #f4f4f4;
-            margin: 40px;
+            font-family: "微软雅黑", sans-serif; /* 设置字体 */
+            background-color: #f4f4f4; /* 页面背景颜色 */
+            margin: 0;
+            height: 100vh; /* 视口高度 */
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center;     /* 垂直居中 */
         }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-        a {
-            color: blue;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+
         .card {
             background: white;
-            padding: 20px;
-            margin: 20px auto;
-            width: 800px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            padding: 30px 40px;
+            width: 1000px; /* 卡片宽度 */
+            border-radius: 12px; /* 圆角 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            text-align: center; /* 文字居中 */
+        }
+
+        .card h1 {
+            color: #2c3e50; /* 标题颜色 */
+            font-size: 36px; /* 字体大小 */
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            line-height: 1.8; /* 行距 */
+            color: #333; /* 字体颜色 */
+            font-size: 21px; /* 字体大小 */
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-<h1>My Links</h1>
 <div class="card">
-    <p> then of course this website based on html&css is written generally with help of gpt</p>
+    <h1>maybe an easter egg</h1>
+    <p> Then of course this website based on HTML is written partially through the help of GPT.</p>
+    <p> However, I hope that one day I can really use AI just as a basic tool, rather than a virtual teacher.</p>
 </div>
 </body>
 </html>

@@ -22,7 +22,7 @@
         }
 
         a {
-            color: blue; /* 超链接颜色 */
+            color: #1dc076; /* 超链接颜色 */
             text-decoration: none; /* 去掉下划线 */
         }
         a:hover {
@@ -35,8 +35,14 @@
             margin: 20px auto;
             width: 800px; /* 卡片宽度 */
             border-radius: 10px; /* 圆角 */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* 阴影 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);}
+        .number {
+            font-family: "Times New Roman", monospace; /* 设置数字字体 */
+            font-weight: bold;
+            font-size: 18px;                        /* 数字大小 */
+            color: #84c4ff;                         /* 数字颜色，可选 */
         }
+
     </style>
 </head>
 <body>
@@ -45,22 +51,33 @@
 <div class="card">
     <h2>self-intro</h2>
     <p>HELLO!  This is Ruijie Sun!</p>
-    <p>Undergraduate : School of Computer Engineering and Science Shanghai University</p>
-    <p>major : computer science</p>
-    <p>my GitHub：<a href="https://github.com/iskjc" target="_blank">click to https://github.com/iskjc</a></p>
-    <p>hobbies : cycling , swimming</p>
-    <p>personal email : iskjcsun@gmail.com</p>
-    <p>school email: 15800897519@shu.edu.cn </p>
+    <p><span style="color: #17b4c3;">birthplace </span>: Shanghai Huangpu district , grow up in Baoshan district</p>
+    <p> <span style="color: #17b4c3;">Education Experience:</span></p>
+    <p style="text-indent: 4em;">Middle school :  WuSong high school,Shanghai</p>
+    <p style="text-indent: 4em;">
+        Undergraduate :
+        <a href="https://cs.shu.edu.cn/" style="color: #3b2626;">School of Computer Engineering and Science</a>
+        <span>
+        <a href="https://www.shu.edu.cn/" target="_blank" style="color: #1ad4e6;">Shanghai University</a>
+    </span>class of 2028
+    </p>
+
+    <p><span style="color: #17b4c3;">major</span> : computer science</p>
+    <p><span style="color: #17b4c3;">my Github</span>：<a href="https://github.com/iskjc" target="_blank">click to https://github.com/iskjc</a></p>
+    <p><span style="color: #17b4c3;">hobbies</span> : cycling , swimming</p>
+    <p><span style="color: #17b4c3;">personal email</span>: iskjcsun@gmail.com</p>
+    <p><span style="color: #17b4c3;">school email</span>: 15800897519@shu.edu.cn </p>
 </div>
 
 <div class="card">
     <h2> academic performance</h2>
-    <p> average gpa: 3.4 (first year)
-        calculus : 90,88,93</p>
-    <p> english : toefl 95 (date:6/28/2025)</p>
+    <p> average gpa:<span class="number">3.4</span> (first year)
+        calculus : <span class="number">90,88,93</span></p>
+    <p><b><a href="https://www.luogu.com.cn/user/1798649">click to my luogu account</a></b> though just a freshman in algorithms</p>
+    <p> <b>english:</b> toefl <span class="number">95</span> (date:6/28/2025)</p>
     <p> reading 25, listening :22 , speaking : 22 , writing : 26</p>
-    <p> skills: basic command of cpp , some python / java </p>
-    <p><a href="https://link.html">really understand how to use ai to help improve myself...</a></p>
+    <p> <b>programming skills:</b> fundamental command of cpp , some python / java </p>
+    <p><a href="link.html">really understand how to use ai to help improve myself...</a></p>
 
 
 </div>
