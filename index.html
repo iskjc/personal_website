@@ -1,95 +1,357 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>我的个人主页</title>
-    <!-- CSS 样式，控制颜色、排版等 -->
+    <title>Ruijie Sun | Personal Website</title>
+
     <style>
-        body {
-            font-family: "微软雅黑", sans-serif; /* 设置字体 */
-            background-color: #f4f4f4; /* 页面背景颜色 */
-            margin: 40px;
+
+        /* ===== 颜色变量 ===== */
+
+        :root{
+
+            --bg-color:#f6f7f9;
+            --card-color:#ffffff;
+            --text-color:#2c2c2c;
+            --border-color:#e6e6e6;
+            --link-color:#4f6fad;
+
         }
 
-        h1 {
-            color: #2c3e50; /* 标题颜色 */
-            text-align: center; /* 居中 */
+        /* ===== 深色模式 ===== */
+
+        @media (prefers-color-scheme: dark){
+
+            :root{
+
+                --bg-color: #1195ac;
+                --card-color:#1e1e1e;
+                --text-color:#e5e5e5;
+                --border-color:#333;
+                --link-color:#7aa2ff;
+
+            }
+
         }
 
-        p {
-            line-height: 1.6; /* 行距 */
-            color: #333; /* 字体颜色 */
+        /* ===== 基础 ===== */
+
+        body{
+
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+
+            background:var(--bg-color);
+
+            color:var(--text-color);
+
+            margin:0;
+
         }
 
-        a {
-            color: #1dc076; /* 超链接颜色 */
-            text-decoration: none; /* 去掉下划线 */
-        }
-        a:hover {
-            text-decoration: underline; /* 鼠标移上去时出现下划线 */
+        /* ===== 导航栏 ===== */
+
+        .navbar{
+
+            background:var(--card-color);
+
+            display:flex;
+            justify-content:space-between;
+
+            padding:18px 10%;
+
+            border-bottom:1px solid var(--border-color);
+
         }
 
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 20px auto;
-            width: 800px; /* 卡片宽度 */
-            border-radius: 10px; /* 圆角 */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);}
-        .number {
-            font-family: "Times New Roman", monospace; /* 设置数字字体 */
-            font-weight: bold;
-            font-size: 18px;                        /* 数字大小 */
-            color: #84c4ff;                         /* 数字颜色，可选 */
+        .nav-title{
+
+            font-weight:600;
+            font-size:18px;
+
+        }
+
+        .nav-links a{
+
+            margin-left:20px;
+
+            text-decoration:none;
+
+            color:var(--text-color);
+
+            font-size:15px;
+
+        }
+
+        .nav-links a:hover{
+
+            color:var(--link-color);
+
+        }
+
+        /* ===== 主体 ===== */
+
+        .container{
+
+            width:70%;
+            max-width:1000px;
+
+            margin:60px auto;
+
+        }
+
+        /* ===== 卡片 ===== */
+
+        .card{
+
+            background:var(--card-color);
+
+            padding:30px;
+
+            margin-bottom:30px;
+
+            border-radius:8px;
+
+            border:1px solid var(--border-color);
+
+        }
+
+        .card h2{
+
+            margin-top:0;
+
+            border-bottom:1px solid var(--border-color);
+
+            padding-bottom:8px;
+
+        }
+
+        /* ===== 文字 ===== */
+
+        p{
+
+            line-height:1.7;
+
+        }
+
+        a{
+
+            color:var(--link-color);
+
+            text-decoration:none;
+
+        }
+
+        a:hover{
+
+            text-decoration:underline;
+
+        }
+
+        /* ===== 数字样式 ===== */
+
+        .number{
+
+            font-family:"Times New Roman",monospace;
+
+            font-weight:bold;
+
+            color:var(--link-color);
+
+        }
+
+        /* ===== profile ===== */
+
+        .profile{
+
+            display:flex;
+
+            gap:30px;
+
+            align-items:center;
+
+        }
+
+        .profile img{
+
+            width:110px;
+
+            border-radius:50%;
+
+        }
+
+        /* ===== 按钮 ===== */
+
+        .button{
+
+            display:inline-block;
+
+            padding:7px 14px;
+
+            background:var(--link-color);
+
+            color:white;
+
+            border-radius:6px;
+
+            margin-right:8px;
+
+            margin-top:10px;
+
+            font-size:14px;
+
+        }
+
+        .button:hover{
+
+            opacity:0.9;
+
+        }
+
+        /* ===== 手机适配 ===== */
+
+        @media (max-width:800px){
+
+            .container{
+
+                width:90%;
+
+            }
+
+            .profile{
+
+                flex-direction:column;
+                text-align:center;
+
+            }
+
         }
 
     </style>
-</head>
-<body>
-<h1>welcome to my website!</h1>
-<!-- 卡片容器 -->
-<div class="card">
-    <h2>self-intro</h2>
-    <p>HELLO!  This is Ruijie Sun!</p>
-    <p><span style="color: #17b4c3;">location </span>: grow up in Baoshan district, born in Shanghai Huangpu district</p>
-    <p> <span style="color: #17b4c3;">Education Experience:</span></p>
-    <p style="text-indent: 4em;">Middle school :  WuSong middle school,Shanghai</p>
-    <p style="text-indent: 4em;">
-        Undergraduate :
-        <a href="https://cs.shu.edu.cn/" style="color: #2972ce;">School of Computer Science</a>
-        <span>
-        <a href="https://www.shu.edu.cn/" target="_blank" style="color: #ce2972;">Shanghai University</a>
-    </span>class of 2028
-    </p>
 
-    <p><span style="color: #17b4c3;">major</span> : computer science</p>
-    <p><span style="color: #17b4c3;">my Github</span>: <a href="https://github.com/iskjc" target="_blank">github.com/iskjc</a></p>
-    <p><span style="color: #17b4c3;">check my CV</span>:  <a href="cv.html" target="_blank">resume here</a></p>
-    <p><span style="color: #17b4c3;">hobbies</span> : cycling , swimming</p>
-    <p><span style="color: #17b4c3;">personal email</span>: iskjcsun@gmail.com</p>
-    <p><span style="color: #17b4c3;">school email</span>: 15800897519@shu.edu.cn </p>
+</head>
+
+<body>
+
+<!-- ===== 导航栏 ===== -->
+
+<div class="navbar">
+
+    <div class="nav-title">
+        Ruijie Sun
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#">Home</a>
+        <a href="cv.html">CV</a>
+        <a href="https://github.com/iskjc" target="_blank">GitHub</a>
+
+    </div>
+
 </div>
 
-<div class="card">
-    <h2> academic performance</h2>
-    <p> <b>average gpa:</b> <span class="number">3.45</span><br>
-    <p style="text-indent: 2em;">
-    <b>calculus :</b> <span class="number">90,88,93</span><br></p>
-    <p style="text-indent: 2em;"><b>linear algebra :</b><span class="number">96</span><br></p>
-    <p style="text-indent: 2em;"><b>Probability Theory and Mathematical Statistics :</b><span class="number">92</span></p>
-    <hr style="border: none; height:1px; background:#1dc076; margin:10px 0;">
-    <p> <b>English : </b> toefl <span class="number">95</span> (date:6/28/2025)</p>
-    <p><p style="text-indent: 2em;"> reading 25, listening :22 , speaking : 22 , writing : 26</p>
-    <hr style="border: none; height:1px; background:#1ad4e6; margin:10px 0;">
-    <p><b>current interests in AI, actively exploring various aspects</b></p>
-    <p> <b>abilities : </b>familiar with pytorch, pandas...</p>
-    <hr style="border: none; height:1px; background:#1ad4e6; margin:10px 0;">
-    <p><a href="link.html">really understand how to use ai to save myself...</a></p>
+<div class="container">
+
+    <!-- ===== ABOUT ===== -->
+
+    <div class="card">
+
+        <div class="profile">
+
+            <div>
+
+                <h2>About Me</h2>
+
+                <p>Hello! This is <b>Ruijie Sun</b>.</p>
+
+                <p>
+                    Undergraduate student in
+                    <a href="https://cs.shu.edu.cn/">School of Computer Science</a>,
+                    <a href="https://www.shu.edu.cn/" target="_blank">Shanghai University</a>,
+                    Class of 2028.
+                </p>
+
+                <p>
+                    Born in Shanghai Huangpu District, grew up in Baoshan District.
+                </p>
+
+                <p>
+                    Research interest: Artificial Intelligence.
+                </p>
+
+                <a class="button" href="cv.html">View CV</a>
+
+                <a class="button" href="https://github.com/iskjc" target="_blank">GitHub</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===== Academic Performance ===== -->
+
+    <div class="card">
+
+        <h2>Academic Performance</h2>
+
+        <p><b>Average GPA:</b> <span class="number">3.45</span></p>
+
+        <p>
+            <p style="text-indent: 2em;">
+            <b>Calculus:</b> <span class="number">90, 88, 93</span><br>
+            <p style="text-indent: 2em;">
+            <b>Linear Algebra:</b> <span class="number">96</span><br>
+            <p style="text-indent: 2em;">
+            <b>Probability Theory and Mathematical Statistics:</b>
+            <span class="number">92</span>
+        </p>
+
+        <hr>
+
+        <p>
+            <b>TOEFL:</b> <span class="number">95</span>
+            (date: 6/28/2025)
+        </p>
+
+        <p style="margin-left:20px">
+            Reading 25 · Listening 22 · Speaking 22 · Writing 26
+        </p>
+
+        <hr>
+
+        <p>
+            <b>Abilities:</b> familiar with PyTorch, Pandas, linux, etc.
+        </p>
+
+        <p>
+            <b>Current Interests:</b>
+            Exploring different directions of AI research.
+        </p>
+
+    </div>
+
+    <!-- ===== Links ===== -->
+
+    <div class="card">
+
+        <h2>Links</h2>
+
+        <p>
+            <a href="link.html">
+                really understand how to use ai to save myself...
+            </a>
+        </p>
+
+        <p>
+            Email:<br>
+            Personal: iskjcsun@gmail.com<br>
+            School: 15800897519@shu.edu.cn
+        </p>
+
+    </div>
+
 </div>
 
 </body>
-
 </html>
-
-
-
