@@ -2,356 +2,336 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ruijie Sun | Personal Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruijie Sun</title>
 
     <style>
-
-        /* ===== 颜色变量 ===== */
-
-        :root{
-
-            --bg-color:#f6f7f9;
-            --card-color:#ffffff;
-            --text-color:#2c2c2c;
-            --border-color:#e6e6e6;
-            --link-color:#4f6fad;
-
+        :root {
+            --bg:       #ffffff;
+            --text:     #1a1a1a;
+            --muted:    #555555;
+            --accent:   #2b5eb8;
+            --rule:     #dddddd;
+            --nav-bg:   #f8f8f8;
         }
 
-        /* ===== 深色模式 ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg:     #121212;
+                --text:   #e8e8e8;
+                --muted:  #aaaaaa;
+                --accent: #7aa2ff;
+                --rule:   #2e2e2e;
+                --nav-bg: #1a1a1a;
+            }
+        }
 
-        @media (prefers-color-scheme: dark){
+        * { box-sizing: border-box; }
 
-            :root{
+        body {
+            margin: 0;
+            font-family: "Georgia", "Times New Roman", serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.75;
+        }
 
-                --bg-color: #1195ac;
-                --card-color:#1e1e1e;
-                --text-color:#e5e5e5;
-                --border-color:#333;
-                --link-color:#7aa2ff;
+        /* ── Nav ── */
+        nav {
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--rule);
+            padding: 14px 0;
+        }
 
+        nav .inner {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .name {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--text);
+            text-decoration: none;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+
+        nav .links a {
+            margin-left: 22px;
+            font-size: 14px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        nav .links a:hover {
+            color: var(--accent);
+        }
+
+        /* ── Main layout ── */
+        main {
+            max-width: 780px;
+            margin: 56px auto 80px;
+            padding: 0 24px;
+        }
+
+        /* ── Intro: photo + bio ── */
+        .intro {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 52px;
+        }
+
+        .intro img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .intro .bio h1 {
+            margin: 0 0 4px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .intro .bio .affil {
+            font-size: 14px;
+            color: var(--muted);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            margin-bottom: 14px;
+        }
+
+        .intro .bio .affil a {
+            color: #4a7bb5;
+            text-decoration: none;
+        }
+
+        .intro .bio .affil a:hover {
+            text-decoration: underline;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .intro .bio .affil a {
+                color: #82aee0;
+            }
+        }
+
+        .intro .bio p {
+            margin: 0 0 10px;
+            font-size: 15px;
+        }
+
+        .intro .bio .contact-line {
+            margin-top: 16px;
+            font-size: 14px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            color: var(--muted);
+        }
+
+        .intro .bio .contact-line a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .intro .bio .contact-line a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Section ── */
+        section {
+            margin-bottom: 44px;
+        }
+
+        section h2 {
+            font-size: 13px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 0 0 14px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        section p {
+            margin: 0 0 10px;
+            font-size: 15px;
+        }
+
+        section a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        section a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Grade table ── */
+        .grade-list {
+            font-size: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+
+        .grade-list .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .grade-list .row:last-child {
+            border-bottom: none;
+        }
+
+        .grade-list .row .label {
+            color: var(--muted);
+        }
+
+        .grade-list .row .val {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--rule);
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: var(--muted);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 600px) {
+            .intro {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
             }
 
-        }
-
-        /* ===== 基础 ===== */
-
-        body{
-
-            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-
-            background:var(--bg-color);
-
-            color:var(--text-color);
-
-            margin:0;
-
-        }
-
-        /* ===== 导航栏 ===== */
-
-        .navbar{
-
-            background:var(--card-color);
-
-            display:flex;
-            justify-content:space-between;
-
-            padding:18px 10%;
-
-            border-bottom:1px solid var(--border-color);
-
-        }
-
-        .nav-title{
-
-            font-weight:600;
-            font-size:18px;
-
-        }
-
-        .nav-links a{
-
-            margin-left:20px;
-
-            text-decoration:none;
-
-            color:var(--text-color);
-
-            font-size:15px;
-
-        }
-
-        .nav-links a:hover{
-
-            color:var(--link-color);
-
-        }
-
-        /* ===== 主体 ===== */
-
-        .container{
-
-            width:70%;
-            max-width:1000px;
-
-            margin:60px auto;
-
-        }
-
-        /* ===== 卡片 ===== */
-
-        .card{
-
-            background:var(--card-color);
-
-            padding:30px;
-
-            margin-bottom:30px;
-
-            border-radius:8px;
-
-            border:1px solid var(--border-color);
-
-        }
-
-        .card h2{
-
-            margin-top:0;
-
-            border-bottom:1px solid var(--border-color);
-
-            padding-bottom:8px;
-
-        }
-
-        /* ===== 文字 ===== */
-
-        p{
-
-            line-height:1.7;
-
-        }
-
-        a{
-
-            color:var(--link-color);
-
-            text-decoration:none;
-
-        }
-
-        a:hover{
-
-            text-decoration:underline;
-
-        }
-
-        /* ===== 数字样式 ===== */
-
-        .number{
-
-            font-family:"Times New Roman",monospace;
-
-            font-weight:bold;
-
-            color:var(--link-color);
-
-        }
-
-        /* ===== profile ===== */
-
-        .profile{
-
-            display:flex;
-
-            gap:30px;
-
-            align-items:center;
-
-        }
-
-        .profile img{
-
-            width:110px;
-
-            border-radius:50%;
-
-        }
-
-        /* ===== 按钮 ===== */
-
-        .button{
-
-            display:inline-block;
-
-            padding:7px 14px;
-
-            background:var(--link-color);
-
-            color:white;
-
-            border-radius:6px;
-
-            margin-right:8px;
-
-            margin-top:10px;
-
-            font-size:14px;
-
-        }
-
-        .button:hover{
-
-            opacity:0.9;
-
-        }
-
-        /* ===== 手机适配 ===== */
-
-        @media (max-width:800px){
-
-            .container{
-
-                width:90%;
-
+            .intro img {
+                margin-top: 0;
             }
 
-            .profile{
-
-                flex-direction:column;
-                text-align:center;
-
+            .grade-list .row {
+                flex-direction: column;
+                gap: 2px;
             }
-
         }
-
     </style>
-
 </head>
-
 <body>
 
-<!-- ===== 导航栏 ===== -->
-
-<div class="navbar">
-
-    <div class="nav-title">
-        Ruijie Sun
-    </div>
-
-    <div class="nav-links">
-
-        <a href="#">Home</a>
-        <a href="cv.html">CV</a>
-        <a href="https://github.com/iskjc" target="_blank">GitHub</a>
-
-    </div>
-
-</div>
-
-<div class="container">
-
-    <!-- ===== ABOUT ===== -->
-
-    <div class="card">
-
-        <div class="profile">
-
-            <div>
-
-                <h2>About Me</h2>
-
-                <p>Hello! This is <b>Ruijie Sun</b>.</p>
-
-                <p>
-                    Undergraduate student in
-                    <a href="https://cs.shu.edu.cn/">School of Computer Science</a>,
-                    <a href="https://www.shu.edu.cn/" target="_blank">Shanghai University</a>,
-                    Class of 2028.
-                </p>
-
-                <p>
-                    Born in Shanghai Huangpu District, grew up in Baoshan District.
-                </p>
-
-                <p>
-                    Research interest: Artificial Intelligence.
-                </p>
-
-                <a class="button" href="cv.html">View CV</a>
-
-                <a class="button" href="https://github.com/iskjc" target="_blank">GitHub</a>
-
-            </div>
-
+<nav>
+    <div class="inner">
+        <a class="name" href="#">Ruijie Sun</a>
+        <div class="links">
+            <a href="#">Home</a>
+            <a href="cv.html">CV</a>
+            <a href="https://github.com/iskjc" target="_blank">GitHub</a>
         </div>
+    </div>
+</nav>
 
+<main>
+
+    <!-- Intro -->
+    <div class="intro">
+        <img src="iskjc2.jpg" alt="Ruijie Sun">
+        <div class="bio">
+            <h1>Ruijie Sun</h1>
+            <div class="affil">
+                B.Eng. Student &nbsp;·&nbsp;
+                <a href="https://cs.shu.edu.cn/" target="_blank">School of Computer Science</a>,
+                <a href="https://www.shu.edu.cn/" target="_blank">Shanghai University</a>
+                &nbsp;(Class of 2028)
+            </div>
+            <p>
+                I am an undergraduate student interested in <strong>Artificial Intelligence</strong>.
+                I am currently exploring different research directions in AI.
+            </p>
+            <p>
+                Born and raised in Shanghai.
+            </p>
+            <div class="contact-line">
+                <a href="mailto:iskjcsun@gmail.com">iskjcsun@gmail.com</a>
+                &nbsp;·&nbsp;
+                <a href="mailto:15800897519@shu.edu.cn">15800897519@shu.edu.cn</a>
+                &nbsp;·&nbsp;
+                <a href="https://github.com/iskjc" target="_blank">GitHub</a>
+                &nbsp;·&nbsp;
+                <a href="cv.html">CV</a>
+            </div>
+        </div>
     </div>
 
-    <!-- ===== Academic Performance ===== -->
-
-    <div class="card">
-
-        <h2>Academic Performance</h2>
-
-        <p><b>Average GPA:</b> <span class="number">3.45</span></p>
-
+    <!-- Research Interests -->
+    <section>
+        <h2>Research Interests</h2>
         <p>
-            <p style="text-indent: 2em;">
-            <b>Calculus:</b> <span class="number">90, 88, 93</span><br>
-            <p style="text-indent: 2em;">
-            <b>Linear Algebra:</b> <span class="number">96</span><br>
-            <p style="text-indent: 2em;">
-            <b>Probability Theory and Mathematical Statistics:</b>
-            <span class="number">92</span>
+            LMMs — currently exploring different directions.
         </p>
+    </section>
 
-        <hr>
-
+    <!-- Education -->
+    <section>
+        <h2>Education</h2>
         <p>
-            <b>TOEFL:</b> <span class="number">95</span>
-            (date: 6/28/2025)
+            <p style="font-size: 24px;"><strong>Shanghai University</strong>, Shanghai, China<br></p>
+            B.Eng. in Computer Science &amp; Technology, 2024 – 2028<br>
+            <span style="font-size:14px; color:var(--muted); font-family:-apple-system,sans-serif;">
+                GPA: 3.5 &nbsp;·&nbsp; TOEFL: 95 (R25 / L22 / S22 / W26, Jun 2025)
+            </span>
+            <br>
+            <p style="font-size: 24px;"><strong>University of Toronto</strong>, Toronto Canada (exchange)<br></p>
+            Department of Computer Science, Sep 2026 – Jan 2027<br>
         </p>
+    </section>
 
-        <p style="margin-left:20px">
-            Reading 25 · Listening 22 · Speaking 22 · Writing 26
+    <!-- Selected Coursework -->
+    <section>
+        <h2>Selected Coursework</h2>
+        <div class="grade-list">
+            <div class="row"><span class="label">Calculus I / II / III</span><span class="val">90 / 88 / 93</span></div>
+            <div class="row"><span class="label">Linear Algebra</span><span class="val">96</span></div>
+            <div class="row"><span class="label">Probability Theory &amp; Statistics</span><span class="val">92</span></div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+        <h2>Skills</h2>
+        <p style="font-size:15px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
+            Python &nbsp;·&nbsp; PyTorch &nbsp;·&nbsp; Pandas &nbsp;·&nbsp; Linux
         </p>
+    </section>
 
-        <hr>
-
+    <!-- Links -->
+    <section>
+        <h2>Misc</h2>
         <p>
-            <b>Abilities:</b> familiar with PyTorch, Pandas, linux, etc.
+            <a href="link.html">really understand how to use ai to save myself...</a>
         </p>
+    </section>
 
-        <p>
-            <b>Current Interests:</b>
-            Exploring different directions of AI research.
-        </p>
+</main>
 
-    </div>
-
-    <!-- ===== Links ===== -->
-
-    <div class="card">
-
-        <h2>Links</h2>
-
-        <p>
-            <a href="link.html">
-                really understand how to use ai to save myself...
-            </a>
-        </p>
-
-        <p>
-            Email:<br>
-            Personal: iskjcsun@gmail.com<br>
-            School: 15800897519@shu.edu.cn
-        </p>
-
-    </div>
-
-</div>
+<footer>
+    Ruijie Sun &nbsp;·&nbsp; Shanghai University &nbsp;·&nbsp; Last updated April 2026
+</footer>
 
 </body>
 </html>

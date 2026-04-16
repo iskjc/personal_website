@@ -3,159 +3,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Vitae</title>
-
+    <title>Curriculum Vitae | Ruijie Sun</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* ===== 颜色变量 ===== */
+        /* ===== CSS Variables ===== */
         :root {
-            --bg-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            --container-bg: #ffffff;
-            --header-text: #2c2c2c;
-            --button-bg: #4f6fad;
-            --cv-bg: #f3f3f3;
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f5f5f7;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-tertiary: #86868b;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --accent-color: #0071e3;
+            --accent-hover: #0077ed;
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
         }
 
-        /* ===== 深色模式变量 ===== */
+        /* ===== Dark Mode ===== */
+        [data-theme="dark"] {
+            --bg-primary: #000000;
+            --bg-secondary: #1c1c1e;
+            --bg-tertiary: #2c2c2e;
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --text-tertiary: #6e6e73;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-color: #0a84ff;
+            --accent-hover: #409cff;
+            --gradient-start: #5e5ce6;
+            --gradient-end: #bf5af2;
+        }
+
         @media (prefers-color-scheme: dark) {
-            :root {
-                /* 关键：增加深色模式的颜色跨度，防止看起来是纯黑 */
-                --bg-gradient: linear-gradient(-45deg, #2d8aff, #3a2f8f, #fb068e, #25ba54);
-                --container-bg: #1e1e1e;
-                --header-text: #e5e5e5;
-                --button-bg: #5a7ec7;
-                --cv-bg: #111111;
+            :root:not([data-theme="light"]) {
+                --bg-primary: #000000;
+                --bg-secondary: #1c1c1e;
+                --bg-tertiary: #2c2c2e;
+                --text-primary: #f5f5f7;
+                --text-secondary: #a1a1a6;
+                --text-tertiary: #6e6e73;
+                --border-color: rgba(255, 255, 255, 0.1);
+                --accent-color: #0a84ff;
+                --accent-hover: #409cff;
+                --gradient-start: #5e5ce6;
+                --gradient-end: #bf5af2;
             }
         }
 
-        /* ===== 动态全屏背景 ===== */
-        body {
+        /* ===== Reset & Base ===== */
+        * {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* 允许长内容滚动 */
-            padding: 60px 0;
-            overflow-x: hidden;
+            box-sizing: border-box;
         }
 
-        /* 使用伪元素承载背景，解决动画偏移问题 */
-        body::before {
-            content: "";
-            position: fixed; /* 固定在视口，不随滚动条移动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ===== Navigation ===== */
+        .navbar {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* 置于底层 */
-            background: var(--bg-gradient);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        [data-theme="dark"] .navbar,
+        :root:not([data-theme="light"]) .navbar {
+            background: rgba(0, 0, 0, 0.8);
         }
 
-        /* ===== 容器样式 ===== */
-        .container {
-            position: relative;
-            width: 70%;
-            max-width: 1100px;
-            background: var(--container-bg);
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-            overflow: hidden;
-            z-index: 1;
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) .navbar {
+                background: rgba(0, 0, 0, 0.8);
+            }
         }
 
-        /* ===== Header ===== */
-        .header {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 28px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            height: 64px;
         }
 
-        .title {
+        .nav-logo {
             font-size: 20px;
             font-weight: 600;
-            color: var(--header-text);
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
-        .buttons {
+        .nav-links {
             display: flex;
-            gap: 12px;
+            align-items: center;
+            gap: 16px;
         }
 
         .btn {
-            padding: 8px 18px;
-            border-radius: 20px;
-            background: var(--button-bg);
-            color: white;
-            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             font-size: 14px;
-            transition: all 0.25s;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
         }
 
-        .btn:hover {
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
         }
 
-        /* ===== CV 展示区域 ===== */
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-tertiary);
+            transform: translateY(-2px);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-secondary);
+            transition: fill 0.2s ease;
+        }
+
+        /* ===== Main Content ===== */
+        .main {
+            padding: 100px 24px 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* ===== CV Container ===== */
+        .cv-container {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
         .cv-view {
-            background: var(--cv-bg);
+            padding: 40px;
             display: flex;
             justify-content: center;
-            padding: 60px 0;
+            align-items: center;
+            background: var(--bg-tertiary);
         }
 
         .cv-view img {
-            width: 900px;
-            max-width: 90%;
+            max-width: 100%;
             height: auto;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-            border-radius: 4px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
         }
 
-        /* 深色模式下的图片微调 */
+        .cv-view img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Dark mode image adjustment */
+        [data-theme="dark"] .cv-view img {
+            filter: brightness(0.9) contrast(1.1);
+        }
+
         @media (prefers-color-scheme: dark) {
-            .cv-view img {
-                filter: brightness(0.85) contrast(1.1);
+            :root:not([data-theme="light"]) .cv-view img {
+                filter: brightness(0.9) contrast(1.1);
             }
         }
 
-        /* ===== 手机适配 ===== */
-        @media (max-width: 800px) {
-            .container {
-                width: 92%;
+        /* ===== Download Section ===== */
+        .download-section {
+            padding: 24px 40px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .download-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            padding: 40px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .main {
+                padding: 80px 16px 40px;
             }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
             .cv-view {
-                padding: 30px 0;
+                padding: 20px;
+            }
+
+            .download-section {
+                padding: 20px;
+            }
+
+            .nav-links .btn span {
+                display: none;
+            }
+
+            .nav-links .btn {
+                padding: 10px;
             }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="header">
-        <div class="title">Curriculum Vitae</div>
-        <div class="buttons">
-            <a class="btn" href="resume.pdf" target="_blank">Download PDF</a>
-            <a class="btn" href="index.html">Back</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Ruijie Sun</a>
+            <div class="nav-links">
+                <a href="resume.pdf" target="_blank" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    <span>Download PDF</span>
+                </a>
+                <a href="index.html" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    </svg>
+                    <span>Back</span>
+                </a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                </button>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="cv-view">
-        <img src="resume-1.png" alt="CV">
-    </div>
-</div>
+    <!-- Main Content -->
+    <main class="main">
+        <div class="header">
+            <h1>Curriculum Vitae</h1>
+            <p>My academic and professional journey</p>
+        </div>
 
+        <div class="cv-container">
+            <div class="cv-view">
+                <img src="resume-1.png" alt="Ruijie Sun's Resume">
+            </div>
+            <div class="download-section">
+                <a href="resume.pdf" target="_blank" class="download-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    Download PDF Version
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 Ruijie Sun · <a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else if (currentTheme === 'light') {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                html.setAttribute('data-theme', prefersDark ? 'light' : 'dark');
+                localStorage.setItem('theme', prefersDark ? 'light' : 'dark');
+            }
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+    </script>
 </body>
 </html>
